@@ -1,8 +1,11 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
+*.pyi
 *$py.class
 test.py
+ssrf_protect.py
+ssrf.patch
 test/
 # C extensions
 *.so
@@ -26,6 +29,8 @@ wheels/
 *.egg
 /package
 /temp
+**/tmp/
+/apps/agentfabric/tmp/
 MANIFEST
 
 # PyInstaller
@@ -33,6 +38,9 @@ MANIFEST
 #  before PyInstaller builds the exe, so as to inject date/other infos into it.
 *.manifest
 *.spec
+release.sh
+build.sh
+*.html
 
 # Installer logs
 pip-log.txt
@@ -117,6 +125,8 @@ venv.bak/
 *.tar.gz
 *.swp
 *.log
+**/logs/
+**/log/
 *.tar.gz
 source.sh
 tensorboard.sh
@@ -125,11 +135,20 @@ replace.sh
 result.png
 result.jpg
 result.mp4
-
+apps/agentfabric/config/local_user/*
+**/logs/
+**/log/
+*.db
 # Pytorch
 *.pth
 *.pt
-
+.run/
+.run/*
 
 # ast template
 ast_index_file.py
+
+
+#neo4j
+.neo4j.lock
+neo4j.lock

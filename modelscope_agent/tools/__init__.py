@@ -1,25 +1,48 @@
-from .hf_tool import HFTool
-from .image_chat_tool import ImageChatTool
-from .pipeline_tool import ModelscopePipelineTool
-from .plugin_tool import LangchainTool
-from .text_address_tool import TextAddressTool
-from .text_ie_tool import TextInfoExtractTool
-from .text_ner_tool import TextNerTool
-from .text_to_image_tool import TextToImageTool
-from .text_to_speech_tool import TexttoSpeechTool
-from .text_to_video_tool import TextToVideoTool
-from .tool import Tool
-from .translation_en2zh_tool import TranslationEn2ZhTool
-from .translation_zh2en_tool import TranslationZh2EnTool
+import sys
 
-DEFAULT_TOOL_LIST = {
-    'modelscope_text-translation-zh2en': 'TranslationZh2EnTool',
-    'modelscope_text-translation-en2zh': 'TranslationEn2ZhTool',
-    'modelscope_text-ie': 'TextInfoExtractTool',
-    'modelscope_text-ner': 'TextNerTool',
-    'modelscope_text-address': 'TextAddressTool',
-    'modelscope_image-generation': 'TextToImageTool',
-    'modelscope_video-generation': 'TextToVideoTool',
-    'modelscope_image-chat': 'ImageChatTool',
-    'modelscope_speech-generation': 'TexttoSpeechTool',
+from ..utils import _LazyModule
+from .contrib import *  # noqa F403
+
+_import_structure = {
+    'amap_weather': ['AMAPWeather'],
+    'code_interpreter': ['CodeInterpreter'],
+    'contrib': ['AliyunRenewInstanceTool'],
+    'dashscope_tools': [
+        'ImageEnhancement', 'TextToImageTool', 'TextToImageLiteTool',
+        'ParaformerAsrTool', 'QWenVL', 'SambertTtsTool', 'StyleRepaint',
+        'WordArtTexture'
+    ],
+    'doc_parser': ['DocParser'],
+    'hf_tool': ['HFTool'],
+    'langchain_proxy_tool': ['LangchainTool'],
+    'modelscope_tools': [
+        'ImageChatTool', 'ModelscopePipelineTool', 'TextAddressTool',
+        'TextInfoExtractTool', 'TextNerTool', 'TexttoSpeechTool',
+        'TextToVideoTool', 'TranslationEn2ZhTool', 'TranslationZh2EnTool'
+    ],
+    'openapi_plugin': ['OpenAPIPluginTool'],
+    'rapidapi_tools': [
+        'ListquotesForCurrentExchange', 'exchange_for_current_exchange',
+        'TextinfoextracttoolForAlphaUmi',
+        'GetMonthlyTop100GamesTorrentsForMovieTvMusicSearchAndDownload',
+        'GetMonthlyTop100MoviesTorrentsTorrentsForMovieTvMusicSearchAndDownload',
+        'GetMonthlyTop100MusicTorrentsForMovieTvMusicSearchAndDownload',
+        'GetMonthlyTop100TvShowsTorrentsForMovieTvMusicSearchAndDownload',
+        'SearchTorrentsForMovieTvMusicSearchAndDownload',
+        'GetDataFactForNumbers,', 'GetMathFactForNumbers',
+        'GetYearFactForNumbers', 'DetectForGoogleTranslate',
+        'LanguagesForGoogleTranslate', 'TranslateForGoogleTranslate'
+    ],
+    'similarity_search': ['SimilaritySearch'],
+    'storage_proxy_tool': ['Storage'],
+    'web_browser': ['WebBrowser'],
+    'web_search': ['WebSearch'],
+    'base': ['TOOL_REGISTRY', 'BaseTool', 'register_tool', 'ToolServiceProxy'],
 }
+
+sys.modules[__name__] = _LazyModule(
+    __name__,
+    globals()['__file__'],
+    _import_structure,
+    module_spec=__spec__,
+)
